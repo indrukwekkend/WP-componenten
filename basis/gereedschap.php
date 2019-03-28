@@ -18,7 +18,7 @@ function maak_afbeelding($post, $af = 'lijst', $is_categorie = false)
         if (has_post_thumbnail($post->ID)) {
             $img = get_the_post_thumbnail($post, $af);
         } else {
-            $img_f = get_field('ta_afbeelding', 'option');
+            $img_f = get_field('terugval_afbeelding', 'option') || get_field('ta_afbeelding', 'option');
             $w = $af . '-width';
             $h = $af . '-height';
             $img = "

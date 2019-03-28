@@ -13,7 +13,13 @@ function IDW_cmp_print_admin_pagina (){ ?>
     
         <h1>Indrukwekkend Compontenten</h1>
 
-        <h1>SJERP: Ik vereis ACF, verwacht bepaalde velden en veronderstel het bestaan van image-formaat lijst</h1>
+        <?php 
+        
+        if (!get_field('terugval_afbeelding', 'option') && !get_field('ta_afbeelding', 'option')) {
+            trigger_error('JOOO. Ik verwacht dat je een optie pagina hebt met daarin een ACF veld genaamd "terugval_afbeelding" of "ta_afbeelding"! Image veld, teruggeven als array.', E_USER_WARNING);
+        }
+                
+        ?>
 
         <section class="idw-cmp-sectie">
 
