@@ -67,6 +67,8 @@ abstract class HTML extends BasisClass
      */
     public $HTML = '';
 
+    public $vereiste_eigenschappen = [];
+
     /**
      * __construct
      *
