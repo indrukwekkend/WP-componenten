@@ -90,10 +90,14 @@ function IDW_cmp_print_admin_pagina (){ ?>
                         'post_type'     => 'post'
                     ]);
 
-                    $eerste_vd_2 = new Artikel(['post' => $twee_posts[0]]);
+                    $eerste_vd_2 = new Artikel(
+                        ['post' => $twee_posts[0]]
+                    );
                     $eerste_vd_2->print();
                     
-                    $tweede_vd_2 = new Artikel(['post' => $twee_posts[1]]);
+                    $tweede_vd_2 = new Artikel(
+                        ['post' => $twee_posts[1]]
+                    );
                     $tweede_vd_2->print();
                     
                 
