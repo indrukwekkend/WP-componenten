@@ -5,9 +5,10 @@ namespace IDW;
 /**
  * HeaderClass
  *
- * {SCHRIJF LATER MEER}
  * print een header met een <hx> uit.
+ * 
  * Params:
+ * string hx_binnen; string htype
  *
  * @category IDW_Componenten
  * @package  IDW_Componenten
