@@ -6,11 +6,11 @@ namespace IDW;
  * ArtikelLijst
  *
  * draait Artikel-instances in een lijst uit.
+ * array_config geeft configuratie door aan de Artikel class
+ * posts is een verzameling
  *
  * Params:
- * string afbeelding; bool geen_afbeelding; bool geen_tekst; bool geen_datum;
- * bool geen_taxonomieen; array uit_te_sluiten_taxonomieen; bool is_categorie; int exc_lim (excerpt limit);
- * string afb_formaat; string htype; array maak_volgorde;
+ * array artikel_config; array posts; string lijst_titel; string htype; string class
  *
  * @category IDW_Componenten
  * @package  IDW_Componenten
@@ -22,6 +22,35 @@ namespace IDW;
  */
 class ArtikelLijst extends HTML implements HTMLInterface
 {
+    /**
+     * Array. Configuratie die meegegeven wordt aan alle artikelen in deze lijst.
+     * @var $artikel_config
+     */
+    public $artikel_config = [];
+
+    /**
+     * Array. Verzameling posts
+     * @var $posts
+     */
+    public $posts = [];
+
+    /**
+     * Array. Verplichte eigenschappen in dit object.
+     * @var $artikel_config
+     */
+    public $vereiste_eigenschappen = ['posts'];
+
+    /**
+     * String. Titel v/d lijst. Komt in header.
+     * @var $artikel_config
+     */
+    public $lijst_titel;
+
+    /**
+     * String. Bepaalt of 't h1, h2, h3 wordt. Standaard h2.
+     * @var $artikel_config
+     */
+    public $htype = '2';
 
     /**
      * __construct
@@ -37,27 +66,64 @@ class ArtikelLijst extends HTML implements HTMLInterface
     }
 
     /**
-     * controleer
-     * loopt na of post object is meegegeven,
+     * pakPostsHTML
+     * mapt de posts mbv de Artikel class en geeft de gezamenlijke HTML terug.
      *
-     * @return bool
+     * @return string
      */
-    public function controleer(): bool
+    public function pakPostsHTML(array $posts): string
     {
-        if (!$this->vereist($this->vereiste_eigenschappen)) {
-            $this->registreerControle(false);
-            trigger_error(
-                "controle {$this->type} mislukt. Zie console voor object eigenschappen",
-                E_USER_NOTICE
-            );
-            echo $this->pakDebugConsole($this);
-            return false;
-        }
 
-        $this->registreerControle(true);
-        return true;
+        $ac = $this->artikel_config;
+        $postsHTML = array_map(function ($post) use ($ac) {
+            $cnf = array_merge($ac, ['post' => $post]);
+            return (new Artikel($cnf))->maak();
+        }, $posts);
+
+        return implode('', $postsHTML);
     }
 
+    public function pakHeeftLijstTitel(): bool
+    {
+        if ($this->eigenschapBestaat('lijst_titel')) {
+            return !!$this->lijst_titel;
+        } else {
+            return false;
+        }
+    }
+
+    public function pakLijstTitel(): string
+    {
+        if ($this->eigenschapBestaat('lijst_titel')) {
+            return $this->lijst_titel;
+        } else {
+            return '';
+        }
+    }
+
+    public function pakHtype(): string
+    {
+        if ($this->eigenschapBestaat('htype')) {
+            return $this->htype;
+        } else {
+            return '';
+        }
+    }
+
+    public function pakHeaderHTML(): string
+    {
+
+        if (!$this->pakHeeftLijstTitel()) {
+            return '';
+        } else {
+            return
+            "<header>
+                <h{$this->pakHtype()}>
+                    {$this->pakLijstTitel()}
+                </h{$this->pakHtype()}>
+            </header>";
+        }
+    }
 
     /**
      * maak
@@ -73,9 +139,10 @@ class ArtikelLijst extends HTML implements HTMLInterface
         }
 
         $this->HTML = "
-            <article class='{$this->pakClass($this->pakExtraClass())}'>
-                {$this->maakVolgensOrde()}
-            </article>
+            <section class='{$this->pakClass('art-lijst')}'>
+                {$this->pakHeaderHTML()}
+                {$this->pakPostsHTML($this->posts)}
+            </section>
         ";
         return $this->HTML;
     }

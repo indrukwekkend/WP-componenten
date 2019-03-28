@@ -2,6 +2,7 @@
 
 use IDW\Knop as Knop;
 use IDW\Artikel as Artikel;
+use IDW\ArtikelLijst as ArtikelLijst;
 
 function IDW_cmp_admin_hook(){
     add_menu_page( 'idw-componenten', 'Indrukwekkend componenten', 'manage_options', 'idw-componenten', 'IDW_cmp_print_admin_pagina' );
@@ -48,11 +49,11 @@ function IDW_cmp_print_admin_pagina (){ ?>
 
         <section class="idw-cmp-sectie">
 
-            <header><h2>Artikel Class.</h2></header>
+            <header><h2>Artikel <strong>lijst</strong> Class.</h2></header>
 
             <div class='idw-cmp-sectie__brood'>
             
-                <p>Het geheim achter Agitatie.</p>
+                <p>De structuur van Agitatie.</p>
 
                 <?php 
 
@@ -61,18 +62,46 @@ function IDW_cmp_print_admin_pagina (){ ?>
                         'post_type'     => 'post'
                     ]);
 
-                    foreach ($alle_posts as $post) {
-                        (new Artikel([
-                            'post'      => $post,
-                            'maak_volgorde' => ['pakArtAchter', 'pakArtVoor']
-                        ]
-                        ))->print();
-                    }
+                    $artikel_lijst = new ArtikelLijst([
+                        'posts'         => $alle_posts,
+                        'lijst_titel'   => "VETTE POSTS TOCH!!!",
+                        'class'         => 'idw_bullshit_class '
+                    ]);
+                    $artikel_lijst->print();
                 
                 ?>
             </div>
 
         </section>
+
+        <section class="idw-cmp-sectie">
+
+            <header><h2>Artikel Class.</h2></header>
+
+            <div class='idw-cmp-sectie__brood'>
+            
+                <p>Het geheim achter Agitatie.</p>
+
+                <?php 
+
+                    $twee_posts = get_posts([
+                        'posts_per_page' => 2,
+                        'post_type'     => 'post'
+                    ]);
+
+                    $eerste_vd_2 = new Artikel(['post' => $twee_posts[0]]);
+                    $eerste_vd_2->print();
+                    
+                    $tweede_vd_2 = new Artikel(['post' => $twee_posts[1]]);
+                    $tweede_vd_2->print();
+                    
+                
+                ?>
+            </div>
+
+        </section>
+
+
 
 
     </div>
