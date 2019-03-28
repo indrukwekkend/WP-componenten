@@ -529,7 +529,7 @@ class Artikel extends HTML implements HTMLInterface
         return "<div class='art-achter'>
             <a href='{$this->pakOfMaakPermalink()}'>
                 <header>
-                    <h<{$this->htype}>{$this->pakTitel()}</h{$this->htype}>
+                    <h{$this->htype}>{$this->pakTitel()}</h{$this->htype}>
                     {$this->pakDatum()}
                     {$this->pakOfMaakTaxonomieMetWaarden()}
                 </header>
