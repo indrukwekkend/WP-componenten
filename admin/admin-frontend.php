@@ -3,6 +3,7 @@
 use IDW\Knop as Knop;
 use IDW\Artikel as Artikel;
 use IDW\ArtikelLijst as ArtikelLijst;
+use IDW\Header as Header;
 
 function IDW_cmp_admin_hook(){
     add_menu_page( 'idw-componenten', 'Indrukwekkend componenten', 'manage_options', 'idw-componenten', 'IDW_cmp_print_admin_pagina' );
@@ -64,7 +65,7 @@ function IDW_cmp_print_admin_pagina (){ ?>
 
                     $artikel_lijst = new ArtikelLijst([
                         'posts'         => $alle_posts,
-                        'lijst_titel'   => "VETTE POSTS TOCH!!!",
+                        'titel'         => "VETTE POSTS TOCH!!!",
                         'class'         => 'idw_bullshit_class '
                     ]);
                     $artikel_lijst->print();

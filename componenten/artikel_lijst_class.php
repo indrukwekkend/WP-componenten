@@ -2,6 +2,8 @@
 
 namespace IDW;
 
+use \IDW\Header as Header;
+
 /**
  * ArtikelLijst
  *
@@ -36,15 +38,15 @@ class ArtikelLijst extends HTML implements HTMLInterface
 
     /**
      * Array. Verplichte eigenschappen in dit object.
-     * @var $artikel_config
+     * @var $vereiste_eigenschappen
      */
     public $vereiste_eigenschappen = ['posts'];
 
     /**
      * String. Titel v/d lijst. Komt in header.
-     * @var $artikel_config
+     * @var $titel
      */
-    public $lijst_titel;
+    public $titel;
 
     /**
      * String. Bepaalt of 't h1, h2, h3 wordt. Standaard h2.
@@ -83,48 +85,6 @@ class ArtikelLijst extends HTML implements HTMLInterface
         return implode('', $postsHTML);
     }
 
-    public function pakHeeftLijstTitel(): bool
-    {
-        if ($this->eigenschapBestaat('lijst_titel')) {
-            return !!$this->lijst_titel;
-        } else {
-            return false;
-        }
-    }
-
-    public function pakLijstTitel(): string
-    {
-        if ($this->eigenschapBestaat('lijst_titel')) {
-            return $this->lijst_titel;
-        } else {
-            return '';
-        }
-    }
-
-    public function pakHtype(): string
-    {
-        if ($this->eigenschapBestaat('htype')) {
-            return $this->htype;
-        } else {
-            return '';
-        }
-    }
-
-    public function pakHeaderHTML(): string
-    {
-
-        if (!$this->pakHeeftLijstTitel()) {
-            return '';
-        } else {
-            return
-            "<header>
-                <h{$this->pakHtype()}>
-                    {$this->pakLijstTitel()}
-                </h{$this->pakHtype()}>
-            </header>";
-        }
-    }
-
     /**
      * maak
      * controleert de component en maakt de HTML.
@@ -138,9 +98,14 @@ class ArtikelLijst extends HTML implements HTMLInterface
             return '';
         }
 
+        $sectie_header = new Header([
+            'hx_binnen' => $this->titel,
+            'htype'     => $this->htype
+        ]);
+
         $this->HTML = "
             <section class='{$this->pakClass('art-lijst')}'>
-                {$this->pakHeaderHTML()}
+                {$sectie_header->maak()}
                 {$this->pakPostsHTML($this->posts)}
             </section>
         ";

@@ -26,6 +26,8 @@ require 'basis/basis_class.php';
 require 'basis/HTML_interface.php';
 require 'basis/HTML_class.php';
 
+require 'subcomponenten/header_class.php';
+
 require 'componenten/knop_class.php';
 require 'componenten/artikel_class.php';
 require 'componenten/artikel_lijst_class.php';
