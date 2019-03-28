@@ -10,7 +10,7 @@ namespace IDW;
  * Geen of wel taxonomieen; wel of geen datum, wel of geen afbeelding.
  *
  * Params:
- * string afbeelding; bool geen_afbeelding; bool geen_tekst; bool geen_datum;
+ * object post; string afbeelding; bool geen_afbeelding; bool geen_tekst; bool geen_datum;
  * bool geen_taxonomieen; array uit_te_sluiten_taxonomieen; bool is_categorie; int exc_lim (excerpt limit);
  * string afb_formaat; string htype; array maak_volgorde;
  *
@@ -106,7 +106,7 @@ class Artikel extends HTML implements HTMLInterface
      * Array. Gebruikt tijdens controle voor minimum aantal argumenten.
      * @var $vereiste_eigenschappen
      */
-    protected $vereiste_eigenschappen = ['post'];
+    public $vereiste_eigenschappen = ['post'];
 
     /**
      * __construct
