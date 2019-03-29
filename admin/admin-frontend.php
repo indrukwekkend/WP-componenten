@@ -47,6 +47,9 @@ function IDW_cmp_print_admin_pagina()
             );
         }
 
+        ////////////////////////////////////////////
+        ////////////////////////////////////////////
+
         $knop_sectie = new SectieSimpel([
             'titel' => 'De knop Class.'
         ]);
@@ -65,9 +68,6 @@ function IDW_cmp_print_admin_pagina()
         $artikel_lijst_sectie = new SectieSimpel([
             'titel' => 'Artikel <strong>lijst</strong> Class.'
         ]);
-        $artikel_lijst_sectie->zetBroodHTML(
-            '<p>De structuur van Agitatie.</p>'
-        );
 
         $alle_posts = get_posts([
             'posts_per_page' => 10,
@@ -76,7 +76,6 @@ function IDW_cmp_print_admin_pagina()
 
         $artikel_lijst = new ArtikelLijst([
             'posts' => $alle_posts,
-            'titel' => "VETTE POSTS TOCH!!!",
             'context' => 'blauw groot',
             'artikel_config' => [
                 'context' => 'blauw groot',

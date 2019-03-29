@@ -4,10 +4,12 @@ namespace IDW;
 
 /**
  * SectieSimpel
- * print een simpele sectie
+ * print een simpele sectie.
+ * 
+ * via zetBroodHTML('html') voeg je HTML toe aan de brood (deel onder kop, boven voet)
  *
  * Params:
- * string link, string class, string tekst, bool extern, string ikoon, array maak_volgorde
+ * string titel; string htype; string broodHTML
  *
  * @category IDW_Componenten
  * @package  IDW_Componenten
@@ -44,28 +46,57 @@ class SectieSimpel extends HTML implements HTMLInterface
         parent::__construct($a);
     }
 
-    public function heeftHtype()
+    /**
+     * heeftHtype
+     * geeft true terug in htype bestaat.
+     *
+     * @return bool
+     */
+    public function heeftHtype(): bool
     {
         return $this->eigenschapBestaat('htype');
     }
 
-    public function pakHtype()
+    /**
+     * pakHtype
+     * geeft Htype terug indien die bestaat.
+     * 
+     * @return string
+     */
+    public function pakHtype(): string
     {
         if ($this->eigenschapBestaat('htype')) {
             return $this->htype;
         }
     }
 
-    public function zetBroodHTML(string $broodHTML)
+    /**
+     * zetBroodHTML
+     * is DE functie om html toe te voegen aan secties.
+     * Wordt allemaal achter elkaar geplakt.
+     * Geeft na executie broodHTML product terug.
+     *
+     * @param  string $broodHTML
+     *
+     * @return string
+     */
+    public function zetBroodHTML(string $broodHTML): string
     {
         if (!$this->eigenschapBestaat('broodHTML')) {
             $this->broodHTML = $broodHTML;
         } else {
             $this->broodHTML .= $broodHTML;
         }
+        return $this->broodHTML;
         
     }
 
+    /**
+     * pakBroodHTML
+     * geeft broodHTML terug indien het bestaat.
+     *
+     * @return string
+     */
     public function pakBroodHTML(): string
     {
         if ($this->eigenschapBestaat('broodHTML')) {
