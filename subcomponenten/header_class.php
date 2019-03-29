@@ -105,7 +105,7 @@ class Header extends HTML implements HTMLInterface
         }
 
         if (!$this->pakHeeftHxBinnen()) {
-            $this->HTML = 'geen hx binnen';
+            $this->HTML = '';
         } else {
             $this->HTML =
             "<header class='{$this->pakClass()}'>

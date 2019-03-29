@@ -4,6 +4,7 @@ use IDW\Knop as Knop;
 use IDW\Artikel as Artikel;
 use IDW\ArtikelLijst as ArtikelLijst;
 use IDW\Header as Header;
+use IDW\SectieSimpel as SectieSimpel;
 
 function IDW_cmp_admin_hook()
 {
@@ -43,29 +44,23 @@ function IDW_cmp_print_admin_pagina()
                 'JOOO. Ik verwacht dat je een optie pagina hebt met daarin een ACF veld genaamd "terugval_afbeelding" of "ta_afbeelding"! Image veld, teruggeven als array.',
                 E_USER_WARNING
             );
-        } ?>
+        } 
 
-        <section class="idw-cmp-sectie">
+        $knop_sectie = new SectieSimpel([
+            'titel'     => 'De knop Class.',
+        ]);
+        $knop_sectie->zetBroodHTML('<p>Ik kom in de brood YO</p>');
+        $knop_class = new Knop([
+            'link' => site_url(),
+            'context' => 'superknop',
+            'tekst' => 'Dit is de knop'
+        ]);
+        $knop_sectie->zetBroodHTML($knop_class->maak());
+        $knop_sectie->print();
+        
 
-            <header><h2>knop Class.</h2></header>
 
-            <div class='idw-cmp-sectie__brood'>
-            
-                <p>Dit is de knop class - wat zal ik schrijven?.</p>
-
-                <?php
-                $knop_class = new Knop([
-                    'link' => site_url(),
-                    'context' => 'superknop',
-                    'tekst' => 'Dit is de knop Yo'
-                    // 'extern'        => false, // facultatief
-                ]);
-
-                $knop_class->print();
-                ?>
-            </div>
-
-        </section>
+?>       
 
 
 

@@ -31,6 +31,7 @@ require 'subcomponenten/header_class.php';
 require 'componenten/knop_class.php';
 require 'componenten/artikel_class.php';
 require 'componenten/artikel_lijst_class.php';
+require 'componenten/sectie_class.php';
 
 require 'admin/installatie.php';
 require 'admin/admin-frontend.php';
