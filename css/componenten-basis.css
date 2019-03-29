@@ -1,0 +1,14 @@
+.sectie-simpel {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.header__header-kop {
+    padding: 20px 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+[class*='brood'] {
+    padding: 20px;
+}

@@ -26,6 +26,7 @@ function IDW_cmp_print_admin_pagina()
         <link href='/wp-content/plugins/idw-componenten/bootstrap/bootstrap-reboot.css' rel='stylesheet'>
         <link href='/wp-content/plugins/idw-componenten/bootstrap/bootstrap-grid.css' rel='stylesheet'>
         <link href='/wp-content/plugins/idw-componenten/bootstrap/bootstrap.css' rel='stylesheet'>
+        <link href='/wp-content/plugins/idw-componenten/css/componenten-basis.css' rel='stylesheet'>
 
         <style>
             img {
@@ -53,13 +54,24 @@ function IDW_cmp_print_admin_pagina()
         $knop_sectie = new SectieSimpel([
             'titel' => 'De knop Class.'
         ]);
+
         $knop_sectie->zetBroodHTML('<p>Ik kom in de brood YO</p>');
+
         $knop_class = new Knop([
-            'link' => site_url(),
-            'context' => 'superknop',
-            'tekst' => 'Dit is de knop'
+            'link'      => site_url(),
+            'class'     => 'btn-primary btn-lg',
+            'context'   => 'demo',
+            'tekst'     => 'Dit is een primare knop'
         ]);
         $knop_sectie->zetBroodHTML($knop_class->maak());
+
+        $knop_class2 = new Knop([
+            'link'      => site_url(),
+            'class'     => 'btn-success',
+            'tekst'     => 'Dit is een success knop'
+        ]);
+        $knop_sectie->zetBroodHTML($knop_class2->maak());
+
         $knop_sectie->print();
 
         ////////////////////////////////////////////

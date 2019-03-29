@@ -79,6 +79,12 @@ abstract class HTML extends BasisClass
     public $index = 0;
 
     /**
+     * String. Class voor overschrijving van buitenaf.
+     * @var $class
+     */
+    public $class = '';
+
+    /**
      * Array. Class verzameling
      * @var $class_verz
      */

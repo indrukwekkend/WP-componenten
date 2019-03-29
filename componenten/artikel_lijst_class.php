@@ -119,7 +119,7 @@ class ArtikelLijst extends HTML implements HTMLInterface
         ]);
 
         $this->HTML = "
-            <section class='{$this->pakBootstrap('row')} {$this->pakClass()}'>
+            <section class='{$this->pakBootstrap('row')} {$this->pakClass($this->class)}'>
                 <div class='{$this->pakBootstrap('col-12')}'>
                     {$sectie_header->maak()}
                 </div>

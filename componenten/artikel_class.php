@@ -539,7 +539,7 @@ class Artikel extends HTML implements HTMLInterface
         }
 
         $this->HTML = "
-            <article class='{$this->pakClass($this->pakExtraClass())}'>
+            <article class='{$this->pakClass($this->pakExtraClass() . ' ' . $this->class)}'>
                 {$this->maakVolgensOrde()}
             </article>
         ";

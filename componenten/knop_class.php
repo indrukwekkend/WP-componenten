@@ -58,7 +58,7 @@ class Knop extends HTML implements HTMLInterface
      */
     public function __construct(array $a = [])
     {
-        $this->type = "Knop";
+        $this->type = "btn";
         parent::__construct($a);
     }
 
@@ -105,7 +105,7 @@ class Knop extends HTML implements HTMLInterface
      */
     protected function pakClassAttr(): string
     {
-        return "class='{$this->pakClass('knop')}'";
+        return "class='{$this->pakClass($this->class)}'";
     }
 
     /**

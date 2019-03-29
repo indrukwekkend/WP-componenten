@@ -137,7 +137,7 @@ class SectieSimpel extends HTML implements HTMLInterface
 
             <section class='
                 {$this->pakBootstrap('row')} 
-                {$this->pakClass()}
+                {$this->pakClass($this->class)}
             '>
 
                 {$sectie_header->maak()}
