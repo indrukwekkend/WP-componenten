@@ -20,8 +20,19 @@ function IDW_cmp_print_admin_pagina()
 {
     ?>
     
-    <div class='wrap'>
+    <div class='wrap container'>
     
+        <link href='/wp-content/plugins/idw-componenten/bootstrap/bootstrap-reboot.css' rel='stylesheet'>
+        <link href='/wp-content/plugins/idw-componenten/bootstrap/bootstrap-grid.css' rel='stylesheet'>
+        <link href='/wp-content/plugins/idw-componenten/bootstrap/bootstrap.css' rel='stylesheet'>
+
+        <style>
+            img {
+                width: 100%;
+                height: auto;
+            }
+        </style>
+
         <h1>Indrukwekkend Compontenten</h1>
 
         <?php if (

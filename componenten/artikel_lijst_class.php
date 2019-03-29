@@ -91,7 +91,10 @@ class ArtikelLijst extends HTML implements HTMLInterface
         $postsHTML = implode('', $postsHTMLverz);
 
         return 
-        "<div class='row {$this->pakElementClass('artikel-groep')}'>
+        "<div class='
+            {$this->pakBootstrap('row')} 
+            {$this->pakElementClass('artikel-groep')}
+        '>
             $postsHTML
         </div>";
     }
@@ -116,11 +119,14 @@ class ArtikelLijst extends HTML implements HTMLInterface
         ]);
 
         $this->HTML = "
-            <section class='row {$this->pakClass()}'>
-                <div class='col'>
+            <section class='
+                {$this->pakBootstrap('row')}
+                {$this->pakClass()}
+            '>
+                <div class='{$this->pakBootstrap('col-12')}'>
                     {$sectie_header->maak()}
                 </div>
-                <div class='col'>
+                <div class='{$this->pakBootstrap('col-12')}'>
                     {$this->pakPostsHTML($this->posts)}
                 </div>
             </section>

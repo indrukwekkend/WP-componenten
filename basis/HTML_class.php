@@ -85,6 +85,12 @@ abstract class HTML extends BasisClass
     public $class_verz;
 
     /**
+     * Bool. Bepaalt al dan niet gebruiken van Bootstrap classes.
+     * @var $bootstrap
+     */
+    public $bootstrap = true;
+
+    /**
      * __construct
      *
      * @param  mixed $a
@@ -309,6 +315,34 @@ abstract class HTML extends BasisClass
     protected function pakIndex(): int
     {
         return $this->index;
+    }
+
+    /**
+     * heeftBootstrap
+     * geeft true als bootstrap is true
+     *
+     * @return bool
+     */
+    protected function heeftBootstrap(): bool
+    {
+        return $this->bootstrap;
+    }
+
+    /**
+     * pakBootstrap
+     * geeft de ingegeven string terug indien heeftBootstrap
+     *
+     * @param  string $bootstrap_class
+     *
+     * @return string
+     */
+    protected function pakBootstrap(string $bootstrap_class = ''): string
+    {
+        if ($this->heeftBootstrap()) {
+            return $bootstrap_class;
+        } else {
+            return '';
+        }
     }
 
     /**
