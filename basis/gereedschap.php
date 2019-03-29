@@ -2,7 +2,7 @@
 
 namespace IDWNuts;
 
-function maak_afbeelding($post, $af = 'lijst', $is_categorie = false)
+function maak_afbeelding($post, string $af = 'lijst', bool $is_categorie = false, string $class = '')
 {
 
     if ($is_categorie) {
@@ -12,17 +12,19 @@ function maak_afbeelding($post, $af = 'lijst', $is_categorie = false)
 			 src='{$afb_verz['sizes'][$af]}'
 			 alt='{$afb_verz['alt']}'
 			 height='{$afb_verz['sizes'][$af . '-width']}'
-			 width='{$afb_verz['sizes'][$af . '-height']}'
+             width='{$afb_verz['sizes'][$af . '-height']}'
+             class='$class'
 		 />";
     } else {
         if (has_post_thumbnail($post->ID)) {
-            $img = get_the_post_thumbnail($post, $af);
+            $img = get_the_post_thumbnail($post, $af, ['class' => $class]);
         } else {
             $img_f = get_field('terugval_afbeelding', 'option') || get_field('ta_afbeelding', 'option');
             $w = $af . '-width';
             $h = $af . '-height';
             $img = "
-				 <img
+                 <img
+                     class='$class'
 					 src='{$img_f['sizes'][$af]}'
 					 alt='{$img_f['alt']}'
 					 width='{$img_f['sizes'][$w]}'

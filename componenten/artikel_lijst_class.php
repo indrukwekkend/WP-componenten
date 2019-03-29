@@ -9,7 +9,10 @@ use \IDW\Header as Header;
  *
  * draait Artikel-instances in een lijst uit.
  * array_config geeft configuratie door aan de Artikel class
- * posts is een verzameling
+ * posts is een verzameling.
+ * 
+ * De artikel_config eigenschap gaat naar de afzonderlijke artikelen.
+ * Plaats in stuk_klassen een string of array met klassen voor de verschillende artikelen.
  *
  * Params:
  * array artikel_config; array posts; string lijst_titel; string htype; string class
@@ -63,7 +66,7 @@ class ArtikelLijst extends HTML implements HTMLInterface
      */
     public function __construct($config)
     {
-        $this->type = "Artikel lijst";
+        $this->type = "artikel-lijst";
         parent::__construct($config);
     }
 
@@ -77,12 +80,20 @@ class ArtikelLijst extends HTML implements HTMLInterface
     {
 
         $ac = $this->artikel_config;
-        $postsHTML = array_map(function ($post) use ($ac) {
-            $cnf = array_merge($ac, ['post' => $post]);
-            return (new Artikel($cnf))->maak();
-        }, $posts);
+        $postsHTMLverz = array_map(function ($post, $index) use ($ac) {
+            $ecnf = ['post' => $post];
+            $cnf = array_merge($ac, $ecnf);
+            $dit_artikel = new Artikel($cnf);
+            $dit_artikel->zetIndex($index);
+            return $dit_artikel->maak();
+        }, $posts, array_keys($posts));
 
-        return implode('', $postsHTML);
+        $postsHTML = implode('', $postsHTMLverz);
+
+        return 
+        "<div class='row {$this->pakElementClass('artikel-groep')}'>
+            $postsHTML
+        </div>";
     }
 
     /**
@@ -100,13 +111,18 @@ class ArtikelLijst extends HTML implements HTMLInterface
 
         $sectie_header = new Header([
             'hx_binnen' => $this->titel,
-            'htype'     => $this->htype
+            'htype'     => $this->htype,
+            'context'   => $this->context
         ]);
 
         $this->HTML = "
-            <section class='{$this->pakClass('art-lijst')}'>
-                {$sectie_header->maak()}
-                {$this->pakPostsHTML($this->posts)}
+            <section class='row {$this->pakClass()}'>
+                <div class='col'>
+                    {$sectie_header->maak()}
+                </div>
+                <div class='col'>
+                    {$this->pakPostsHTML($this->posts)}
+                </div>
             </section>
         ";
         return $this->HTML;

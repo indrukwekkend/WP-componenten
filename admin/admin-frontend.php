@@ -5,23 +5,34 @@ use IDW\Artikel as Artikel;
 use IDW\ArtikelLijst as ArtikelLijst;
 use IDW\Header as Header;
 
-function IDW_cmp_admin_hook(){
-    add_menu_page( 'idw-componenten', 'Indrukwekkend componenten', 'manage_options', 'idw-componenten', 'IDW_cmp_print_admin_pagina' );
+function IDW_cmp_admin_hook()
+{
+    add_menu_page(
+        'idw-componenten',
+        'Indrukwekkend componenten',
+        'manage_options',
+        'idw-componenten',
+        'IDW_cmp_print_admin_pagina'
+    );
 }
 
-function IDW_cmp_print_admin_pagina (){ ?>
+function IDW_cmp_print_admin_pagina()
+{
+    ?>
     
     <div class='wrap'>
     
         <h1>Indrukwekkend Compontenten</h1>
 
-        <?php 
-        
-        if (!get_field('terugval_afbeelding', 'option') && !get_field('ta_afbeelding', 'option')) {
-            trigger_error('JOOO. Ik verwacht dat je een optie pagina hebt met daarin een ACF veld genaamd "terugval_afbeelding" of "ta_afbeelding"! Image veld, teruggeven als array.', E_USER_WARNING);
-        }
-                
-        ?>
+        <?php if (
+            !get_field('terugval_afbeelding', 'option') &&
+            !get_field('ta_afbeelding', 'option')
+        ) {
+            trigger_error(
+                'JOOO. Ik verwacht dat je een optie pagina hebt met daarin een ACF veld genaamd "terugval_afbeelding" of "ta_afbeelding"! Image veld, teruggeven als array.',
+                E_USER_WARNING
+            );
+        } ?>
 
         <section class="idw-cmp-sectie">
 
@@ -31,21 +42,21 @@ function IDW_cmp_print_admin_pagina (){ ?>
             
                 <p>Dit is de knop class - wat zal ik schrijven?.</p>
 
-                <?php 
+                <?php
+                $knop_class = new Knop([
+                    'link' => site_url(),
+                    'context' => 'superknop',
+                    'tekst' => 'Dit is de knop Yo'
+                    // 'extern'        => false, // facultatief
+                ]);
 
-                    $knop_class = new Knop([
-                        'link'          => site_url(),
-                        'class'         => 'superknop',
-                        'tekst'         => 'Dit is de knop Yo',
-                        // 'extern'        => false, // facultatief
-                    ]);
-
-                    $knop_class->print();
-                
+                $knop_class->print();
                 ?>
             </div>
 
         </section>
+
+
 
 
         <section class="idw-cmp-sectie">
@@ -56,20 +67,22 @@ function IDW_cmp_print_admin_pagina (){ ?>
             
                 <p>De structuur van Agitatie.</p>
 
-                <?php 
+                <?php
+                $alle_posts = get_posts([
+                    'posts_per_page' => 10,
+                    'post_type' => 'post'
+                ]);
 
-                    $alle_posts = get_posts([
-                        'posts_per_page' => 10,
-                        'post_type'     => 'post'
-                    ]);
-
-                    $artikel_lijst = new ArtikelLijst([
-                        'posts'         => $alle_posts,
-                        'titel'         => "VETTE POSTS TOCH!!!",
-                        'class'         => 'idw_bullshit_class '
-                    ]);
-                    $artikel_lijst->print();
-                
+                $artikel_lijst = new ArtikelLijst([
+                    'posts' => $alle_posts,
+                    'titel' => "VETTE POSTS TOCH!!!",
+                    'context' => 'blauw groot',
+                    'artikel_config' => [
+                        'context' => 'blauw groot',
+                        'stuk_klassen' => 'col-4'
+                    ]
+                ]);
+                $artikel_lijst->print();
                 ?>
             </div>
 
@@ -83,25 +96,20 @@ function IDW_cmp_print_admin_pagina (){ ?>
             
                 <p>Het geheim achter Agitatie.</p>
 
-                <?php 
+                <?php
+                $twee_posts = get_posts([
+                    'posts_per_page' => 2,
+                    'post_type' => 'post'
+                ]);
 
-                    $twee_posts = get_posts([
-                        'posts_per_page' => 2,
-                        'post_type'     => 'post'
-                    ]);
+                $eerste_vd_2 = new Artikel([
+                    'post' => $twee_posts[0],
+                    'context' => 'bier'
+                ]);
+                $eerste_vd_2->print();
 
-                    $eerste_vd_2 = new Artikel(
-                        ['post' => $twee_posts[0]]
-                    );
-                    $eerste_vd_2->print();
-                    
-                    $tweede_vd_2 = new Artikel(
-                        ['post' => $twee_posts[1]]
-                    );
-                    $tweede_vd_2->print();
-                    
-                
-                ?>
+                $tweede_vd_2 = new Artikel(['post' => $twee_posts[1]]);
+                $tweede_vd_2->print();?>
             </div>
 
         </section>
@@ -111,6 +119,7 @@ function IDW_cmp_print_admin_pagina (){ ?>
 
     </div>
 
-<?php }
+<?php
+}
 
 add_action('admin_menu', 'IDW_cmp_admin_hook');

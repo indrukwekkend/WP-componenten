@@ -117,30 +117,8 @@ class Artikel extends HTML implements HTMLInterface
      */
     public function __construct($config)
     {
-        $this->type = "Artikel";
+        $this->type = "artikel";
         parent::__construct($config);
-    }
-
-    /**
-     * controleer
-     * loopt na of post object is meegegeven,
-     *
-     * @return bool
-     */
-    public function controleer(): bool
-    {
-        if (!$this->vereist($this->vereiste_eigenschappen)) {
-            $this->registreerControle(false);
-            trigger_error(
-                "controle {$this->type} mislukt. Zie console voor object eigenschappen",
-                E_USER_NOTICE
-            );
-            echo $this->pakDebugConsole($this);
-            return false;
-        }
-
-        $this->registreerControle(true);
-        return true;
     }
 
     /**
@@ -254,7 +232,8 @@ class Artikel extends HTML implements HTMLInterface
         $this->afbeelding = \IDWNuts\maak_afbeelding(
             $this->post,
             $this->pakOfMaakAfbeeldingFormaat(),
-            $this->pakOfMaakIsCategorie()
+            $this->pakOfMaakIsCategorie(),
+            $this->pakElementClass('artikel-voor-afbeelding')
         );
 
         return $this->afbeelding;
@@ -307,9 +286,9 @@ class Artikel extends HTML implements HTMLInterface
 
         // als geen afbeelding, dan lees-meer achter tekst zodat klikbaarheid duidelijker is.
         $this->tekstHTML =
-            "<p>$exc" .
+            "<p class='{$this->pakElementClass('tekst')}'>$exc" .
             ($this->pakGeenAfbeelding()
-                ? "<span class='lees-meer'>Meer
+                ? "<span class='{$this->pakElementClass('lees-meer')}'>Meer
                 </span>"
                 : '') .
             "</p>";
@@ -348,7 +327,7 @@ class Artikel extends HTML implements HTMLInterface
         }
 
         $tijd = get_the_date(get_option('date_format'), $this->post->ID);
-        return "<time class='post-datum'>$tijd</time>";
+        return "<time class='{$this->pakElementClass('datum')}'>$tijd</time>";
     }
 
     /**
@@ -448,7 +427,7 @@ class Artikel extends HTML implements HTMLInterface
                     }
 
                     $this->taxonomie_waarden .=
-                        "<span class='tax tekst-zwart'> $str" .
+                        "<span class='{$this->pakElementClass('taxonomie-lijst')}'> $str" .
                         strtolower(implode(', ', $tax_waarden)) .
                         "</span>";
                 endforeach; // iedere print_ar
@@ -486,7 +465,7 @@ class Artikel extends HTML implements HTMLInterface
      */
     public function pakExtraClass(): string
     {
-        $r = 'art-c ';
+        $r = '';
         if ($this->geen_afb) {
             $r .= 'geen-afb ';
         }
@@ -510,8 +489,10 @@ class Artikel extends HTML implements HTMLInterface
         if ($this->pakGeenAfbeelding()):
             return '';
         else:
-            return "<div class='art-voor'>
-                <a href='{$this->pakOfMaakPermalink()}'>
+            return "<div class='{$this->pakElementClass('artikel-voor')}'>
+                <a class='{$this->pakElementClass(
+                'artikel-voor-link'
+            )}' href='{$this->pakOfMaakPermalink()}'>
                     {$this->pakOfMaakAfbeelding()}
                 </a>
             </div>";
@@ -526,10 +507,15 @@ class Artikel extends HTML implements HTMLInterface
      */
     public function pakArtAchter(): string
     {
-        return "<div class='art-achter'>
-            <a href='{$this->pakOfMaakPermalink()}'>
-                <header>
-                    <h{$this->htype}>{$this->pakTitel()}</h{$this->htype}>
+        return "<div class='{$this->pakElementClass('achter')}'>
+            <a 
+                class='{$this->pakElementClass('achter-link')}' 
+                href='{$this->pakOfMaakPermalink()}'
+            >
+                <header class='{$this->pakElementClass('header')}'>
+                    <h{$this->htype} class='{$this->pakElementClass('kop')}'>
+                        {$this->pakTitel()}
+                    </h{$this->htype}>
                     {$this->pakDatum()}
                     {$this->pakOfMaakTaxonomieMetWaarden()}
                 </header>

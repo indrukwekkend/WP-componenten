@@ -39,6 +39,7 @@ abstract class BasisClass
     /**
      * EigenschapBestaat
      * controleert bestaan eigenschap op dit object.
+     * True indien property exists and !is_null
      *
      * @param string $eigenschap_naam De naam van de eigenschap
      *

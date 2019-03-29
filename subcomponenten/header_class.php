@@ -42,10 +42,16 @@ class Header extends HTML implements HTMLInterface
      */
     public function __construct($config)
     {
-        $this->type = "Header";
         parent::__construct($config);
+        $this->type = "header";
     }
 
+    /**
+     * pakHeeftHxBinnen
+     * geeft true indien hx_binnen bestaat en niet leeg is.
+     *
+     * @return bool
+     */
     public function pakHeeftHxBinnen(): bool
     {
         if ($this->eigenschapBestaat('hx_binnen')) {
@@ -55,6 +61,12 @@ class Header extends HTML implements HTMLInterface
         }
     }
 
+    /**
+     * pakHxBinnen
+     * geeft hx_binnen indien die bestaat
+     *
+     * @return string
+     */
     public function pakHxBinnen(): string
     {
         if ($this->eigenschapBestaat('hx_binnen')) {
@@ -64,6 +76,12 @@ class Header extends HTML implements HTMLInterface
         }
     }
 
+    /**
+     * pakHtype
+     * geeft htype indien die bestaat.
+     *
+     * @return string
+     */
     public function pakHtype(): string
     {
         if ($this->eigenschapBestaat('htype')) {
@@ -90,8 +108,8 @@ class Header extends HTML implements HTMLInterface
             $this->HTML = 'geen hx binnen';
         } else {
             $this->HTML =
-            "<header>
-                <h{$this->pakHtype()}>
+            "<header class='{$this->pakClass()}'>
+                <h{$this->pakHtype()} class='{$this->pakElementClass('header-kop')}'>
                     {$this->pakHxBinnen()}
                 </h{$this->pakHtype()}>
             </header>";
