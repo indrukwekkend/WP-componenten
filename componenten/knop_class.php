@@ -70,7 +70,8 @@ class Knop extends HTML implements HTMLInterface
      */
     protected function pakIkoon(): string
     {
-        return $this->ikoon;
+        $ec = $this->pakElementClass('ikoon');
+        return "<span class='$ec'>$this->ikoon</span>";
     }
 
     /**
@@ -116,7 +117,8 @@ class Knop extends HTML implements HTMLInterface
      */
     protected function pakTekst(): string
     {
-        return $this->tekst;
+        $ec = $this->pakElementClass('tekst');
+        return "<span class='$ec'>$this->tekst</span>";
     }
 
     /**
@@ -157,6 +159,8 @@ class Knop extends HTML implements HTMLInterface
             return '';
         }
 
+        $kbec = $this->pakElementClass('knop-binnen');
+
         $this->HTML = "
 			<a 
 
@@ -165,7 +169,7 @@ class Knop extends HTML implements HTMLInterface
 				{$this->pakClassAttr()}
 
 			>
-				<span>
+				<span class='$kbec'>
 
 				{$this->maakVolgensOrde()}
 					

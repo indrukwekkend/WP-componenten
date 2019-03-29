@@ -362,12 +362,12 @@ abstract class HTML extends BasisClass
     protected function pakClass(string $extra_class_string = ''): string
     {
         if (!$this->eigenschapBestaat('class_verz')) {
-            $this->maakClassVerz($extra_class_string);
+            $this->maakClassVerz();
         }
 
         return trim(implode(' ', $this->pakClassVerz())) .
             ' ' .
-            $this->pakStukKlasse();
+            $this->pakStukKlasse() . ' ' . $extra_class_string;
     }
 
     /**
