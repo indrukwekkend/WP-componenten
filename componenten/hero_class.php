@@ -16,19 +16,9 @@ namespace IDW;
  */
 class Hero extends HTML implements HTMLInterface
 {
-    /**
-     * String. Komt in de hero
-     *
-     * @var $titel
-     */
-    public $titel;
-
-    /**
-     * String. Bepaalt koptype.
-     *
-     * @var $htype
-     */
-    public $htype = '1';
+    
+    // TRAIT
+    use Titel;
 
     /**
      * String. Komt onder de titel.
@@ -85,35 +75,6 @@ class Hero extends HTML implements HTMLInterface
         } else {
             trigger_error('htype onbekend hero', E_USER_WARNING);
             return '1';
-        }
-    }
-
-    /**
-     * heeftTitel
-     * true indien titel bestaat.
-     *
-     * @return string
-     */
-    public function heeftTitel(): bool
-    {
-        return $this->eigenschapBestaat('titel');
-    }
-
-    /**
-     * pakTitel
-     * geeft titel terug indien die bestaat.
-     *
-     * @return string
-     */
-    public function pakTitel(): string
-    {
-        if ($this->heeftTitel()) {
-            $h = $this->pakHtype();
-            return "
-                <h$h class='{$this->pakElementClass('titel')}' >{$this->titel}</h$h>
-            ";
-        } else {
-            return '';
         }
     }
 

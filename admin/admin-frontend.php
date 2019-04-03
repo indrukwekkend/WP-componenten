@@ -70,7 +70,7 @@ function IDW_cmp_print_admin_pagina()
 
         $hero_sectie = new Hero(
             [
-            'achtergrond' => get_the_post_thumbnail(15),
+            'achtergrond' => get_the_post_thumbnail(56),
             'titel'       => "Ik ben de Hero Class.",
             'htype'       => '2',
             'slagzin'     => "Beste hero ooit",
