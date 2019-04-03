@@ -145,6 +145,13 @@ class Hero extends HTML implements HTMLInterface
         }
     }
 
+    /**
+     * pakTitelEnSlagzin
+     * geeft een tuin terug met daarin de titel en slagzin
+     * als één van de twee bestaan.
+     *
+     * @return string
+     */
     public function pakTitelEnSlagzin(): string
     {
         if (!$this->heeftSlagzin() && !$this->heeftTitel()) {
@@ -160,6 +167,12 @@ class Hero extends HTML implements HTMLInterface
 
     }
 
+    /**
+     * pakAchtergrond
+     * geeft de achtergrond terug in .__achtergrond
+     *
+     * @return string
+     */
     public function pakAchtergrond(): string
     {
         return "
@@ -172,11 +185,23 @@ class Hero extends HTML implements HTMLInterface
         ";
     }
 
+    /**
+     * heeftKnop
+     * geeft true als knop eigenschap bestaat.
+     *
+     * @return bool
+     */
     public function heeftKnop(): bool
     {
         return $this->eigenschapBestaat('knop');
     }
 
+    /**
+     * pakKnop
+     * geeft knop in .__knop-tuin indien knop bestaat
+     *
+     * @return string
+     */
     public function pakKnop(): string
     {
         if ($this->eigenschapBestaat('knop')) {
