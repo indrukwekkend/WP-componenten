@@ -5,7 +5,7 @@ namespace IDW;
 /**
  * Knop
  * rendert een anker met een tekst en evt een ikoon.
-* 
+ *
  * Params:
  * string link, string class, string tekst, bool extern, string ikoon, array maak_volgorde
  *
@@ -21,30 +21,35 @@ class Knop extends HTML implements HTMLInterface
 {
     /**
      * String. Volledig <img> element.
+     *
      * @var $ikoon
      */
-    public $ikoon = '';
+    public $ikoon;
 
     /**
      * String. Tekst van knop.
+     *
      * @var $ikoon
      */
     public $tekst = '';
 
     /**
      * String. Href attribute van anker.
+     *
      * @var $link
      */
     public $link = '#';
 
     /**
      * Bool. Bepaalt of target=_blank
+     *
      * @var $extern
      */
     public $extern = false;
 
     /**
      * Array. Standaard volgorde van maakVolgensOrde methode.
+     *
      * @var $maak_volgorde
      */
     public $maak_volgorde = ['pakIkoon', 'pakTekst'];
@@ -52,7 +57,7 @@ class Knop extends HTML implements HTMLInterface
     /**
      * __construct
      *
-     * @param  array $a
+     * @param array $a
      *
      * @return void
      */
@@ -70,8 +75,13 @@ class Knop extends HTML implements HTMLInterface
      */
     protected function pakIkoon(): string
     {
-        $ec = $this->pakElementClass('ikoon');
-        return "<span class='$ec'>$this->ikoon</span>";
+        if ($this->eigenschapBestaat('ikoon')) {
+            $ec = $this->pakElementClass('ikoon');
+            return "<span class='$ec'>$this->ikoon</span>";
+        } else {
+            return '';
+        }
+
     }
 
     /**
@@ -134,7 +144,7 @@ class Knop extends HTML implements HTMLInterface
             $this->registreerControle(false);
             echo $this->pakDebugConsole($this);
             trigger_error(
-                "Knop class heeft ofwel een tekst of een ikoon nodig. 
+                "Knop class heeft ofwel een tekst of een ikoon nodig.
             Zie de console voor de eigenschappen van de knop.",
                 E_USER_WARNING
             );
@@ -162,7 +172,7 @@ class Knop extends HTML implements HTMLInterface
         $kbec = $this->pakElementClass('knop-binnen');
 
         $this->HTML = "
-			<a 
+			<a
 
 				{$this->pakTargetAttr()}
 				{$this->pakHrefAttr()}
@@ -172,7 +182,7 @@ class Knop extends HTML implements HTMLInterface
 				<span class='$kbec'>
 
 				{$this->maakVolgensOrde()}
-					
+
 				</span>
 			</a>
 		";

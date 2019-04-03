@@ -66,6 +66,8 @@ function IDW_cmp_print_admin_pagina()
 
         $hero_knop->maak();
 
+        echo $hero_knop->pakDebugConsole();
+
         $hero_sectie = new Hero(
             [
             'achtergrond' => get_the_post_thumbnail(15),
@@ -119,7 +121,6 @@ function IDW_cmp_print_admin_pagina()
             ]
         );
         $knop_sectie->zetBroodHTML($knop_class->maak());
-        $knop_sectie->zetBroodHTML($knop_class->pakDebugConsole($knop_class));
 
         $knop_class2 = new Knop(
             [
