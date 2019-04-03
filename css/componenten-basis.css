@@ -1,80 +1,111 @@
 .toplevel_page_idw-componenten {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .sectie-simpel {
-    margin-top: 50px;
-    margin-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .header__header-kop {
-    padding: 20px 40px;
-    font-weight: bold;
-    text-align: center;
+  padding: 20px 40px;
+  font-weight: bold;
+  text-align: center;
 }
 
-[class*='brood'] {
-    padding: 20px;
+[class*="brood"] {
+  padding: 20px;
 }
 
 .artikel {
-    display: flex;
+  display: flex;
 }
 
 .artikel__artikel-voor-link {
-    display: block;
-    overflow:hidden;
+  display: block;
+  overflow: hidden;
 }
-    .artikel__artikel-voor-afbeelding {
-        height: 100%;
-        width: 100%;
-        object-fit:cover;        
-    }
+.artikel__artikel-voor-afbeelding {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 
 .artikel__kop {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .artikel-lijst {
-    margin-bottom: -30px;
+  margin-bottom: -30px;
 }
 
 .artikel-lijst .artikel {
-    margin-bottom: 30px;
-    transition: 0.3s ease-in-out 0.1s;
-    transform: translate(0,0);
+  margin-bottom: 30px;
+  transition: 0.3s ease-in-out 0.1s;
+  transform: translate(0, 0);
 }
 .artikel-lijst .artikel:hover {
-    transform: translate(5px, -5px);
+  transform: translate(5px, -5px);
 }
 
-.artikel-lijst [class*='artikel-binnen'] {
-    background-color: white;
-    box-shadow: 1px 1px 1px rgba(33, 33, 33, 0.5);
+.artikel-lijst [class*="artikel-binnen"] {
+  background-color: white;
+  box-shadow: 1px 1px 1px rgba(33, 33, 33, 0.5);
 }
 
 .artikel-lijst .artikel__artikel-voor-afbeelding {
-    height: 175px;    
+  height: 175px;
 }
 
 .artikel__achter {
-    padding: 20px;
+  padding: 20px;
 }
 
 .artikel__achter-link {
-    color: #212121
+  color: #212121;
 }
 
 .artikel__achter-link:hover {
-    text-decoration: none; 
+  text-decoration: none;
 }
 
+.hero {
+  position: relative;
+}
 
+.hero__binnen {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
 
+.hero__tekstvlak {
+  display: inline-block;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 15px;
+  font-size: 3rem;
+}
+
+.hero__titel {
+  margin-top: 0;
+}
+.hero__slagzin {
+  margin-bottom: 0;
+}
+.hero__titel,
+.hero__slagzin {
+  font-weight: bold;
+  color: whitesmoke;
+}
+
+.hero__knop-tuin {
+  display: block;
+}
 
 .btn__ikoon + .btn__tekst {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 .btn__tekst + .btn__ikoon {
-    margin-left: 10px;
+  margin-left: 10px;
 }

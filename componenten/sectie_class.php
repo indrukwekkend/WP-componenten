@@ -5,7 +5,7 @@ namespace IDW;
 /**
  * SectieSimpel
  * print een simpele sectie.
- * 
+ *
  * via zetBroodHTML('html') voeg je HTML toe aan de brood (deel onder kop, boven voet)
  *
  * Params:
@@ -23,12 +23,14 @@ class SectieSimpel extends HTML implements HTMLInterface
 {
     /**
      * String. Komt in de header.
+     *
      * @var $titel
      */
     public $titel;
 
     /**
      * String. Inhoud HTML blob van sectie.
+     *
      * @var $broodHTML
      */
     public $broodHTML;
@@ -36,7 +38,7 @@ class SectieSimpel extends HTML implements HTMLInterface
     /**
      * __construct
      *
-     * @param  array $a
+     * @param array $a
      *
      * @return void
      */
@@ -60,7 +62,7 @@ class SectieSimpel extends HTML implements HTMLInterface
     /**
      * pakHtype
      * geeft Htype terug indien die bestaat.
-     * 
+     *
      * @return string
      */
     public function pakHtype(): string
@@ -76,7 +78,7 @@ class SectieSimpel extends HTML implements HTMLInterface
      * Wordt allemaal achter elkaar geplakt.
      * Geeft na executie broodHTML product terug.
      *
-     * @param  string $broodHTML
+     * @param string $broodHTML
      *
      * @return string
      */
@@ -88,7 +90,7 @@ class SectieSimpel extends HTML implements HTMLInterface
             $this->broodHTML .= $broodHTML;
         }
         return $this->broodHTML;
-        
+
     }
 
     /**
@@ -136,7 +138,7 @@ class SectieSimpel extends HTML implements HTMLInterface
         $this->HTML = "
 
             <section class='
-                {$this->pakBootstrap('row')} 
+                {$this->pakBootstrap('row')}
                 {$this->pakClass($this->class)}
             '>
 
@@ -146,12 +148,12 @@ class SectieSimpel extends HTML implements HTMLInterface
                     {$this->pakElementClass('brood')}
                     {$this->pakBootstrap('col-12')}
                 '>
-                
+
                     {$this->pakBroodHTML()}
-                    
+
                 </div>
 
-            </section>			
+            </section>
 		";
 
         return $this->HTML;

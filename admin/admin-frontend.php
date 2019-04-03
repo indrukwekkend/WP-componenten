@@ -5,6 +5,7 @@ use IDW\Artikel as Artikel;
 use IDW\ArtikelLijst as ArtikelLijst;
 use IDW\Header as Header;
 use IDW\SectieSimpel as SectieSimpel;
+use IDW\Hero as Hero;
 
 function IDW_cmp_admin_hook()
 {
@@ -49,6 +50,33 @@ function IDW_cmp_print_admin_pagina()
                 E_USER_WARNING
             );
         }
+
+        ///////////////////////////////////////////
+        ///////////////////////////////////////////
+
+
+        $hero_knop = new Knop(
+            [
+            'link'      => "https://lolz.nl",
+            'class'     => 'btn-primary btn-lg',
+            'context'   => 'hero',
+            'tekst'     => 'FREE LUNCH CLICK HERE'
+            ]
+        );
+
+        $hero_knop->maak();
+
+        $hero_sectie = new Hero(
+            [
+            'achtergrond' => get_the_post_thumbnail(15),
+            'titel'       => "Ik ben de Hero Class.",
+            'htype'       => '2',
+            'slagzin'     => "Beste hero ooit",
+            'knop'        => $hero_knop->HTML,
+            ]
+        );
+
+        $hero_sectie->print();
 
         ///////////////////////////////////////////
         ///////////////////////////////////////////
