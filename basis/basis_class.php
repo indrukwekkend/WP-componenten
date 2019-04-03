@@ -58,21 +58,15 @@ abstract class BasisClass
      *
      * @return string
      */
-    public static function pakDebug($debug = false): string
+    public function pakDebug(): string
     {
-        if ($debug) {
-            ob_start();
-            echo "<pre>";
-            var_dump($debug);
-            echo "</pre>";
-            return ob_get_clean();
-        } else {
-            trigger_error(
-                'Geen debug parameters meegegeven aan pakDebug',
-                E_USER_NOTICE
-            );
-            return '';
-        }
+
+        ob_start();
+        echo "<pre>";
+        var_dump($this);
+        echo "</pre>";
+        return ob_get_clean();
+
     }
 
     /**
@@ -84,15 +78,8 @@ abstract class BasisClass
      *
      * @return string
      */
-    public static function pakDebugConsole($debug = false): string
+    public function pakDebugConsole(): string
     {
-        if ($debug) {
-            return "<script>console.log(" . json_encode($debug) . ");</script>";
-        } else {
-            trigger_error(
-                'Geen debug parameters meegegeven aan pakDebugConsole',
-                E_USER_NOTICE
-            );
-        }
+        return "<script>console.log(" . json_encode($this) . ");</script>";
     }
 }
