@@ -1,7 +1,7 @@
 <?php
 
 /*
-Plugin Name: IDW componenten
+Plugin Name: wp componenten
 Plugin URI: https://github.com/indrukwekkend/WP-componenten
 Description: Beste. Componenten. Oooooit.
 Author: Sjerp van Wouden / Indrukwekkend
