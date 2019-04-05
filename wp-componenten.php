@@ -12,6 +12,7 @@ Author URI: https://indrukwekkend.nl
 register_activation_hook(__FILE__, 'IDW_componenten_voorwaarden');
 
 add_action('after_setup_theme', 'registreer_lijst_formaat', 99);
+add_action('after_setup_theme', 'registreer_optie_pagina_en_velden');
 
 function registreer_lijst_formaat()
 {
@@ -19,6 +20,7 @@ function registreer_lijst_formaat()
         add_image_size('lijst', 720, 450);
     }
 }
+
 
 require 'basis/acf.php';
 require 'basis/gereedschap.php';

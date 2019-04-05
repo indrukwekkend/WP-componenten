@@ -10,10 +10,10 @@ use IDW\Hero as Hero;
 function IDW_cmp_admin_hook()
 {
     add_menu_page(
-        'idw-componenten',
+        'wp-componenten',
         'Indrukwekkend componenten',
         'manage_options',
-        'idw-componenten',
+        'wp-componenten',
         'IDW_cmp_print_admin_pagina'
     );
 }
@@ -24,10 +24,10 @@ function IDW_cmp_print_admin_pagina()
 
     <div class='wrap container'>
 
-        <link href='<?php echo plugins_url()?>/idw-componenten/bootstrap/bootstrap-reboot.css' rel='stylesheet'>
-        <link href='<?php echo plugins_url()?>/idw-componenten/bootstrap/bootstrap-grid.css' rel='stylesheet'>
-        <link href='<?php echo plugins_url()?>/idw-componenten/bootstrap/bootstrap.css' rel='stylesheet'>
-        <link href='<?php echo plugins_url()?>/idw-componenten/css/componenten-basis.css' rel='stylesheet'>
+        <link href='<?php echo plugins_url()?>/wp-componenten/bootstrap/bootstrap-reboot.css' rel='stylesheet'>
+        <link href='<?php echo plugins_url()?>/wp-componenten/bootstrap/bootstrap-grid.css' rel='stylesheet'>
+        <link href='<?php echo plugins_url()?>/wp-componenten/bootstrap/bootstrap.css' rel='stylesheet'>
+        <link href='<?php echo plugins_url()?>/wp-componenten/css/componenten-basis.css' rel='stylesheet'>
 
         <style>
             img {
@@ -39,7 +39,7 @@ function IDW_cmp_print_admin_pagina()
             }
         </style>
 
-        <h1>Indrukwekkend Compontenten</h1>
+        <h1>Indrukwekkend Componenten</h1> <BR><BR>
 
         <?php
         if (!get_field('terugval_afbeelding', 'option')
@@ -70,7 +70,7 @@ function IDW_cmp_print_admin_pagina()
 
         $hero_sectie = new Hero(
             [
-            'achtergrond' => get_the_post_thumbnail(56),
+            'achtergrond' => get_the_post_thumbnail(1),
             'titel'       => "Ik ben de Hero Class.",
             'htype'       => '2',
             'slagzin'     => "Beste hero ooit",
