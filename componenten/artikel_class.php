@@ -457,6 +457,12 @@ class Artikel extends HTML implements HTMLInterface
         return $this->taxonomie_waarden;
     }
 
+    function printIndex(){
+        if ($this->eigenschapBestaat('index')) {
+            return " data-index='{$this->index}' ";
+        }
+    }
+
     /**
      * pakExtraClass
      * geeft extra classes voor de component mee aan de hand van object eigenschappen
@@ -539,7 +545,7 @@ class Artikel extends HTML implements HTMLInterface
         }
 
         $this->HTML = "
-            <article class='{$this->pakClass($this->pakExtraClass() . ' ' . $this->class)}'>
+            <article class='{$this->pakClass($this->pakExtraClass() . ' ' . $this->class)}' {$this->printIndex()}>
                 <div class='{$this->pakElementClass('artikel-binnen')}'>
                     {$this->maakVolgensOrde()}
                 </div>
