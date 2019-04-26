@@ -133,7 +133,7 @@ class Tekstblok extends HTML implements HTMLInterface
           "<div class='
                {$this->pakElementClass('tekst')}
                {$this->pakTekstBS()}
-          '>{$this->tekst}</div>";
+          '>{$this->tekst}{$this->knop}</div>";
         } else {
             return '';
         }
@@ -181,7 +181,8 @@ class Tekstblok extends HTML implements HTMLInterface
     {
         
         $header_cnf = [
-            'hx_binnen' => $this->titel
+            'hx_binnen' => $this->titel,
+            'context'  => 'tekstblok '.$this->context
         ];
 
         if ($this->heeftHtype()) {
@@ -217,11 +218,11 @@ class Tekstblok extends HTML implements HTMLInterface
         $this->HTML = "
 
             <section class='
-                {$this->pakBootstrap('row')}
                 {$this->pakClass($this->class)}
             '>
-
-                {$this->maakVolgensOrde()}
+                <div class='{$this->pakElementClass('tuin')} {$this->pakBootstrap('row')}'>
+                    {$this->maakVolgensOrde()}
+                </div>
 
             </section>
 		";

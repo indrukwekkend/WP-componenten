@@ -109,3 +109,30 @@
 .btn__tekst + .btn__ikoon {
   margin-left: 10px;
 }
+
+
+.tekstblok__tuin {
+  width: 960px;
+  max-width: calc(100% - 30px);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.header--tekstblok {
+  flex-basis: 100%;
+}
+
+.tekstblok__tekst, .tekstblok__afbeeldingen {
+  flex-basis: calc(50% - 30px);
+}
+
+.tekstblok__tekst > :first-child {
+  margin-top: 0;
+}
+.tekstblok__tekst > :last-child {
+  margin-bottom: 0;
+}
